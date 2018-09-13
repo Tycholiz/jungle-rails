@@ -1,19 +1,36 @@
+# B = index
+# R = show
+# E = update
+# A = create
+# D = destroy
+#
+# Ruby has 2 more actions
+# new --> a get request that returns a form that can be filled out to execute the create action
+# edit --> a get request that returns a form that can be filled out to execute the update action
+
 Rails.application.routes.draw do
 
   root to: 'products#index'
 
   resources :products, only: [:index, :show]
-  resources :categories, only: [:show]
+  resources :categories, only: [:index, :show]
 
   resource :cart, only: [:show] do
     post   :add_item
     post   :remove_item
   end
+  
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
 
   resources :orders, only: [:create, :show]
 
   namespace :admin do
-    root to: 'dashboard#show'
+    root to: 'dashboard#show'  #the page rendered on /admins
     resources :products, :categories, except: [:edit, :update, :show]
   end
 
@@ -24,7 +41,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+    # get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
