@@ -1,10 +1,8 @@
 class OrderMailer < ApplicationMailer
-  def order_confirmation_email
-    puts "hey man, I'm in order_confirmation_email now.  what is params?"
-    p params
-    @user = params[:user]
+  def order_confirmation_email user, order
+    @user = user
     @url  = 'http://example.com/login'
-    @orderId = params[:order]
-    mail(to: @user.email, subject: 'Order ID:' @orderId)
+    orderId = order
+    mail(to: @user.email, subject: 'Order ID:')
   end
 end
