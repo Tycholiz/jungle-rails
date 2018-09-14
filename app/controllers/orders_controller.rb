@@ -4,7 +4,13 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @line_items = LineItem.where("order_id": @order.id)
   end
+
+  def item_info line_item
+    Product.find(line_item.product_id)
+  end
+  helper_method :item_info
 
   def create
     charge = perform_stripe_charge

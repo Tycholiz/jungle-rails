@@ -1,3 +1,4 @@
+<% # we can use product and quantity here because they are defined in the show.html.erb %>
 <tr>
   <td>
     <%= image_tag product.image.tiny %>
@@ -11,7 +12,7 @@
     <%= product.price %>
   </td>
   <td>
-    <%=  %>
+    <%= quantity %>
   </td>
   <td>
     <%= product.price * quantity %>
