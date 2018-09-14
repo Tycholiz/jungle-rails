@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
 
 
   private
-
 #these helper methods make themselves available the view. helper methdods are defined any time we need to access them within Controllers and Views
 
   def cart

@@ -4,6 +4,7 @@ class CartsController < ApplicationController
   before_filter :authorize
 
   def show
+    @cart = Order.find(params[:id])
   end
 
   def add_item
