@@ -1,7 +1,7 @@
+# Language: Ruby, Level: Level 3
 class OrdersController < ApplicationController
 
   before_filter :authorize
-
   def show
     @order = Order.find(params[:id])
     @line_items = LineItem.where("order_id": @order.id)
