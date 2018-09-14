@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+include BCrypt
 
 puts "Seeding Data ..."
 
@@ -19,7 +20,18 @@ unless Rails.env.development?
   exit 0
 end
 
-# Let's do this ...
+## USERS
+
+puts "Creating users"
+
+#this wont work because password needs to be hashed
+# @password = BCrypt::Password.create('asdasd'))
+user1 = User.create!({
+  first_name: 'Kyle',
+  last_name: 'Tycholiz',
+  email: 'tycholiz22@hotmail.com',
+  password_digest: BCrypt::Password.create('asdasd')
+  })
 
 ## CATEGORIES
 
@@ -131,6 +143,26 @@ cat3.products.create!({
   quantity: 23,
   price: 2_483.75
 })
+
+## REVIEWS
+
+puts "Creating reviews"
+
+Review.destroy_all
+
+prod1 = Product.find_or_create_by! name: 'Electric Chair'
+prod2 = Product.find_or_create_by! name: 'Hipster Hat'
+prod3 = Product.find_or_create_by! name: 'World\'s Largest Smartwatch'
+prod4 = Product.find_or_create_by! name: 'Men\'s Classy shirt'
+prod5 = Product.find_or_create_by! name: 'Women\'s Zebra pants'
+
+prod1.reviews.create!({
+  description: "Electric chair!?? who could argue with an electric chair!?",
+  rating: 5
+  })
+
+
+
 
 
 puts "DONE!"
