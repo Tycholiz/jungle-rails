@@ -20,7 +20,6 @@ class OrdersController < ApplicationController
       empty_cart!
       @order = order
 
-
       OrderMailer.order_confirmation_email(@current_user, @order.id).deliver
       redirect_to order, notice: 'Your Order has been placed.'
     else
