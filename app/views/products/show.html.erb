@@ -25,7 +25,8 @@
           <dt>Reviews</dt>
           <dd>
             <% @reviews.each do |review| %>
-              <%= render 'review', review: review, description: review.description %>
+              <% #render 'review' lets us use the following variables on the relevant partial %>
+              <%= render 'review', rating: review.rating, description: review.description %>
             <% end %>
           </dd>
         </dl>

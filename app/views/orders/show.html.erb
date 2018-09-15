@@ -17,7 +17,6 @@
       </thead>
       <tbody>
         <% @line_items.each do |item| %>
-          <% p "ITEM:----------------------------" %>
           <%= render 'item', product: item.product, quantity: item.quantity %>
         <% end %>
       </tbody>
