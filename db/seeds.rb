@@ -24,14 +24,27 @@ end
 
 puts "Creating users"
 
-#this wont work because password needs to be hashed
-# @password = BCrypt::Password.create('asdasd'))
+
 user1 = User.create!({
   first_name: 'Kyle',
   last_name: 'Tycholiz',
   email: 'tycholiz22@hotmail.com',
   password_digest: BCrypt::Password.create('asdasd')
-  })
+})
+
+user2 = User.create!({
+  first_name: 'Eli',
+  last_name: 'Arias',
+  email: 'tycholiz@hotmail.com',
+  password_digest: BCrypt::Password.create('asdasd')
+})
+
+user3 = User.create!({
+  first_name: 'Luke',
+  last_name: 'Tycholiz',
+  email: 'tycholiz2@hotmail.com',
+  password_digest: BCrypt::Password.create('asdasd')
+})
 
 ## CATEGORIES
 
@@ -158,8 +171,27 @@ prod5 = Product.find_or_create_by! name: 'Women\'s Zebra pants'
 
 prod1.reviews.create!({
   description: "Electric chair!?? who could argue with an electric chair!?",
-  rating: 5
-  })
+  rating: 5,
+  user_id: 1
+})
+
+prod2.reviews.create!({
+  description: "A good idea's a good idea...",
+  rating: 4,
+  user_id: 1
+})
+
+prod1.reviews.create!({
+  description: "What about civil rights?!?!?!?!!",
+  rating: 1,
+  user_id: 2
+})
+prod3.reviews.create!({
+  description: "I never thought I'd live long enough to witness something this fantastic!",
+  rating: 5,
+  user_id: 3
+})
+
 
 
 
