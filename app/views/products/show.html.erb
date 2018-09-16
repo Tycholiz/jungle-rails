@@ -26,18 +26,25 @@
 
 
           <% #url: {action: "create"} <--- not sure if needed as second param below 1 line %>
-          <%= form_for [@product, @review], html: {class: "nifty_form"} do |f| %>
-            <% #f.select :reviews, [['Hot','hot'],['Medium','medium'],['Cold','cold']] %>
-            <%= f.text_area :description, size: "60x12" %>
-            <%= f.submit "Create" %>
+          <%= form_for ([@product, @review]) do |f| %>
+          <div class="review-description">
+             <%= f.text_area :description, placeholder: "Leave a review for #{@product.name}!" %>
+           </div>
+           <div>
+             <% f.select :rating, (1..5) %>
+             <% if current_user %>
+               <%= f.submit "Submit Review" %>
+             <% end %>
+           </div>
           <% end %>
-
+          <% if @reviews.size > 0 %>
           <dd>
             <% @reviews.each do |review| %>
               <% #render 'review' lets us use the following variables on the relevant partial %>
               <%= render 'review', rating: review.rating, description: review.description %>
             <% end %>
           </dd>
+          <% end %>
         </dl>
       </div>
     </div>
