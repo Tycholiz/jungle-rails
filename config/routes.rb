@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :users
   root to: 'products#index'
 
+
+  #here, the data and the FORM of that data is declared. ex. the data type 'products' is needed in forms of index and show. These are both different representations of the same data table.
   resources :products, only: [:index, :show]
   resources :categories, only: [:index, :show]
 
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
     post   :add_item
     post   :remove_item
   end
-  
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

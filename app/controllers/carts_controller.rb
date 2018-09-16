@@ -3,21 +3,18 @@ class CartsController < ApplicationController
 
   before_filter :authorize
 
-  def show
-    @cart = Order.find(params[:id])
+  def index
   end
 
   def add_item
     product_id = params[:product_id].to_s
     modify_cart_delta(product_id, +1)
-
     redirect_to :back
   end
 
   def remove_item
     product_id = params[:product_id].to_s
     modify_cart_delta(product_id, -1)
-
     redirect_to :back
   end
 
@@ -28,5 +25,4 @@ class CartsController < ApplicationController
     cart.delete(product_id) if cart[product_id] < 1
     update_cart cart
   end
-
 end
