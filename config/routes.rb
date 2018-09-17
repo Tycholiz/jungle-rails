@@ -13,9 +13,15 @@ Rails.application.routes.draw do
   resources :users
   root to: 'products#index'
 
+<<<<<<< HEAD
 
   #here, the data and the FORM of that data is declared. ex. the data type 'products' is needed in forms of index and show. These are both different representations of the same data table.
   resources :products, only: [:index, :show]
+=======
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: [:create, :destroy]
+  end
+>>>>>>> feature/product-ratings
   resources :categories, only: [:index, :show]
 
   resource :cart, only: [:show] do
