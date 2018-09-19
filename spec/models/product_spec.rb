@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  describe "Valdiations" do
+  describe "Validations" do
     before(:each) do
       @category = Category.create(name: "Apparel")
     end
